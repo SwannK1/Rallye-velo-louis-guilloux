@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Tone = "muted" | "accent" | "outline";
+type Tone = "muted" | "accent" | "accent-secondary" | "outline";
 
 const toneStyle: Record<Tone, React.CSSProperties> = {
   muted: { background: "var(--muted)", color: "var(--ink-light)", borderColor: "var(--muted)" },
@@ -9,6 +9,13 @@ const toneStyle: Record<Tone, React.CSSProperties> = {
     background: "var(--accent-bg)",
     color: "var(--accent)",
     borderColor: "var(--accent-bg)",
+  },
+  // Registre « après-midi / baie » — même composant, même structure de
+  // ton que `accent`, seule la variable de couleur change (voir globals.css).
+  "accent-secondary": {
+    background: "var(--accent-secondary-bg)",
+    color: "var(--accent-secondary)",
+    borderColor: "var(--accent-secondary-bg)",
   },
   outline: { background: "transparent", color: "var(--ink-light)", borderColor: "var(--frame)" },
 };

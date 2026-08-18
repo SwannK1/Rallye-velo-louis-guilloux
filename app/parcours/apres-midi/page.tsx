@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getParcoursById } from "@/lib/data/parcours";
 import { getEtapesByRouteId } from "@/lib/data/etapes";
 import EtapeThumb from "@/components/EtapeThumb";
 import JsonLd from "@/components/JsonLd";
+import Pill from "@/components/Pill";
+import RouteDivider from "@/components/RouteDivider";
+import UMapEmbed from "@/components/UMapEmbed";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structuredData";
 
@@ -52,6 +56,12 @@ export default function ParcoursApresMidi() {
         {parcours.name}
       </h1>
 
+      {parcours.ambiance && (
+        <Pill tone="accent-secondary" uppercase>
+          {parcours.ambiance}
+        </Pill>
+      )}
+
       <dl
         className="mt-3 flex flex-wrap gap-x-6 gap-y-1 font-sans text-sm mb-8"
         style={{ color: "var(--stone)" }}
@@ -74,21 +84,33 @@ export default function ParcoursApresMidi() {
         </p>
       )}
 
-      {/* Carte */}
-      <div className="mb-10">
-        <a
-          href={parcours.umapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-6 py-3 text-sm font-sans font-medium rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          style={{ background: "var(--accent)", color: "var(--paper)" }}
+      {/* Image de couverture — cadrage panoramique, registre baie/horizon */}
+      <figure className="mb-8">
+        <div aria-hidden="true" className="h-3 rounded-t-xl motif-apresmidi" />
+        <div
+          className="relative w-full overflow-hidden rounded-b-xl border border-t-0"
+          style={{ borderColor: "var(--frame)", aspectRatio: "2 / 1" }}
         >
-          Ouvrir la carte du parcours
-          <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>
-        </a>
-      </div>
+          <Image
+            src="/images/lieux/hillion-eglise-contemporaine.jpg"
+            alt="Photographie contemporaine de l'église Saint-Jean-Baptiste d'Hillion."
+            fill
+            sizes="(min-width: 768px) 700px, 100vw"
+            className="object-cover"
+          />
+        </div>
+      </figure>
 
-      {/* Étapes */}
+      {/* Carte */}
+      <UMapEmbed
+        umapUrl={parcours.umapUrl}
+        title={`Carte du ${parcours.name.toLowerCase()}`}
+        className="mb-10"
+      />
+
+      <RouteDivider tone="accent-secondary" className="mb-10" />
+
+      {/* Étapes — rythme plus ouvert, tracé plus respirant */}
       <section>
         <h2
           className="text-sm font-sans font-medium tracking-widest uppercase mb-5"
@@ -96,21 +118,31 @@ export default function ParcoursApresMidi() {
         >
           Les {etapes.length} étapes
         </h2>
-        <ol className="flex flex-col gap-2">
+        <ol className="relative flex flex-col gap-4 sm:gap-5">
+          <div
+            className="absolute left-10 top-2 bottom-2 hidden sm:block"
+            style={{
+              width: "1px",
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--accent-secondary-bg) 0 10px, transparent 10px 16px)",
+            }}
+            aria-hidden="true"
+          />
           {etapes.map((etape) => (
-            <li key={etape.id}>
+            <li key={etape.id} className="relative">
               <Link
                 href={`/etapes/${etape.slug}`}
-                className="card-link flex items-center gap-4 px-4 py-4 border rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                style={{ borderColor: "var(--frame)" }}
+                className="card-link relative flex items-center gap-4 px-4 py-4 border rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ borderColor: "var(--frame)", background: "var(--paper)" }}
               >
                 <EtapeThumb etape={etape} />
                 {etape.order !== undefined && (
                   <span
-                    className="w-6 h-6 flex-shrink-0 text-xs flex items-center justify-center rounded-full font-sans font-medium"
+                    className="w-6 h-6 flex-shrink-0 text-xs flex items-center justify-center rounded-full font-sans font-medium border"
                     style={{
-                      background: "var(--muted)",
-                      color: "var(--stone)",
+                      background: "var(--paper)",
+                      borderColor: "var(--accent-secondary)",
+                      color: "var(--accent-secondary)",
                     }}
                   >
                     {etape.order}

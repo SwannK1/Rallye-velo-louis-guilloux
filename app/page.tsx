@@ -7,10 +7,21 @@ import { getImageById } from "@/lib/data/images";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import JsonLd from "@/components/JsonLd";
+import Pill from "@/components/Pill";
+import Quote from "@/components/Quote";
+import RouteDivider from "@/components/RouteDivider";
 import { pageMetadata } from "@/lib/seo";
 import { eventJsonLd } from "@/lib/structuredData";
 
 const heroImage = getImageById("tour-cesson-contemporaine");
+
+const galleryLarge = { ...getImageById("gare-saint-brieuc-contemporaine"), etapeSlug: "gare-de-saint-brieuc" };
+const gallerySmall = [
+  { ...getImageById("vallee-gouedic-contemporaine"), etapeSlug: "vallee-du-gouedic" },
+  { ...getImageById("cimetiere-saint-michel-contemporaine"), etapeSlug: "cimetiere-saint-michel" },
+  { ...getImageById("port-legue-contemporaine"), etapeSlug: "port-du-legue" },
+  { ...getImageById("hillion-eglise-contemporaine"), etapeSlug: "hillion" },
+];
 
 const homeTitle = "Rallye Vélo Louis Guilloux — Saint-Brieuc, 20 septembre 2026";
 
@@ -71,7 +82,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <figure>
+          <figure className="order-first lg:order-none">
             <div
               className="relative w-full overflow-hidden rounded-2xl border"
               style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
@@ -94,6 +105,8 @@ export default function HomePage() {
           </figure>
         </div>
       </section>
+
+      <RouteDivider className="py-8 sm:py-10" />
 
       {/* ── Louis Guilloux ────────────────────────────────────────────── */}
       <section className="py-12 sm:py-16">
@@ -131,30 +144,96 @@ export default function HomePage() {
       {/* ── Citation ──────────────────────────────────────────────────── */}
       <section className="pb-12 sm:pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <figure
-            className="border-l-4 pl-6 sm:pl-8 py-1"
-            style={{ borderColor: "var(--accent)" }}
+          <Quote
+            size="large"
+            author="Louis Guilloux"
+            work="L'Herbe d'oubli"
+            reference="Gallimard, 1984 — sur la gare et le port de Saint-Brieuc"
           >
-            <blockquote
-              className="text-xl sm:text-2xl leading-snug"
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontStyle: "italic",
-                color: "var(--ink)",
-              }}
+            Et les sifflets des locomotives ! Et l&apos;odeur de la fumée !
+            Et le mouvement, les cris, les appels de gens qui avaient le
+            bonheur de partir, tous de grands aventuriers !
+          </Quote>
+        </div>
+      </section>
+
+      {/* ── Le parcours en images ────────────────────────────────────────── */}
+      <section className="pb-12 sm:pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h2
+            className="text-2xl sm:text-3xl mb-8"
+            style={{ color: "var(--ink)" }}
+          >
+            Le parcours en images
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 sm:grid-rows-2 gap-3 sm:gap-4">
+            <Link
+              href={`/etapes/${galleryLarge.etapeSlug}`}
+              className="card-link group col-span-2 sm:row-span-2 rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
-              « Et les sifflets des locomotives ! Et l&apos;odeur de la
-              fumée ! Et le mouvement, les cris, les appels de gens qui
-              avaient le bonheur de partir, tous de grands aventuriers ! »
-            </blockquote>
-            <figcaption
-              className="mt-4 text-sm font-sans"
-              style={{ color: "var(--stone)" }}
-            >
-              Louis Guilloux, <em>L&apos;Herbe d&apos;oubli</em>, Gallimard,
-              1984 — sur la gare et le port de Saint-Brieuc
-            </figcaption>
-          </figure>
+              <figure>
+                <div
+                  className="relative w-full overflow-hidden rounded-xl border"
+                  style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
+                >
+                  <Image
+                    src={`/images/lieux/${galleryLarge.fileName}`}
+                    alt={galleryLarge.alt}
+                    fill
+                    sizes="(min-width: 640px) 45vw, 100vw"
+                    className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption
+                  className="mt-2 text-sm font-sans"
+                  style={{ color: "var(--ink-light)" }}
+                >
+                  {galleryLarge.place}
+                  <span
+                    className="block text-xs mt-0.5"
+                    style={{ color: "var(--stone)" }}
+                  >
+                    Voir l&apos;étape →
+                  </span>
+                </figcaption>
+              </figure>
+            </Link>
+            {gallerySmall.map((image) => (
+              <Link
+                key={image.id}
+                href={`/etapes/${image.etapeSlug}`}
+                className="card-link group rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                <figure>
+                  <div
+                    className="relative w-full overflow-hidden rounded-xl border"
+                    style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
+                  >
+                    <Image
+                      src={`/images/lieux/${image.fileName}`}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 640px) 22vw, 50vw"
+                      className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption
+                    className="mt-2 text-xs sm:text-sm font-sans"
+                    style={{ color: "var(--ink-light)" }}
+                  >
+                    {image.place}
+                  </figcaption>
+                </figure>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-4 text-xs font-sans" style={{ color: "var(--stone)" }}>
+            {[galleryLarge, ...gallerySmall].map((img) => img.credit).filter(
+              (v, i, a) => a.indexOf(v) === i,
+            ).join(" · ")}
+          </p>
         </div>
       </section>
 
@@ -171,40 +250,80 @@ export default function HomePage() {
             Les parcours
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            {parcoursData.map((parcours) => (
-              <Card key={parcours.id} as="article">
-                <h3
-                  className="text-lg mb-1"
-                  style={{ color: "var(--ink)" }}
-                >
-                  {parcours.name}
-                </h3>
-                <p
-                  className="text-sm font-sans mb-1"
-                  style={{ color: "var(--stone)" }}
-                >
-                  {parcours.distance}
-                  {parcours.route && ` · ${parcours.route}`}
-                  {!parcours.route && parcours.location && ` · ${parcours.location}`}
-                </p>
-                {parcours.description && (
-                  <p
-                    className="text-sm leading-relaxed mt-2 mb-4"
-                    style={{ color: "var(--ink-light)" }}
+            {parcoursData.map((parcours) => {
+              const isApresMidi = parcours.id === "apres-midi";
+              const cover = parcours.coverImageId
+                ? getImageById(parcours.coverImageId)
+                : undefined;
+
+              return (
+                <Card key={parcours.id} as="article">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Pill tone={isApresMidi ? "accent-secondary" : "accent"} uppercase>
+                      {isApresMidi ? "Après-midi" : "Matin"}
+                    </Pill>
+                    {parcours.ambiance && (
+                      <span
+                        className="text-xs font-sans"
+                        style={{ color: "var(--stone)" }}
+                      >
+                        {parcours.ambiance}
+                      </span>
+                    )}
+                  </div>
+
+                  {cover && (
+                    <div
+                      className="relative w-full overflow-hidden rounded-lg border mb-4"
+                      style={{
+                        borderColor: "var(--frame)",
+                        aspectRatio: isApresMidi ? "16 / 9" : "4 / 3",
+                      }}
+                    >
+                      <Image
+                        src={`/images/lieux/${cover.fileName}`}
+                        alt={cover.alt}
+                        fill
+                        sizes="(min-width: 640px) 45vw, 100vw"
+                        className="object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+
+                  <h3
+                    className="text-lg mb-1"
+                    style={{ color: "var(--ink)" }}
                   >
-                    {parcours.description}
+                    {parcours.name}
+                  </h3>
+                  <p
+                    className="text-sm font-sans mb-1"
+                    style={{ color: "var(--stone)" }}
+                  >
+                    {parcours.distance}
+                    {parcours.route && ` · ${parcours.route}`}
+                    {!parcours.route && parcours.location && ` · ${parcours.location}`}
                   </p>
-                )}
-                <div className="flex flex-col gap-2 mt-4">
-                  <Button href={parcours.umapUrl} variant="accent" external>
-                    Ouvrir la carte
-                  </Button>
-                  <Button href={`/parcours/${parcours.slug}`} variant="outline">
-                    Détails du parcours
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                  {parcours.description && (
+                    <p
+                      className="text-sm leading-relaxed mt-2 mb-4"
+                      style={{ color: "var(--ink-light)" }}
+                    >
+                      {parcours.description}
+                    </p>
+                  )}
+                  <div className="flex flex-col gap-2 mt-4">
+                    <Button href={parcours.umapUrl} variant="accent" external>
+                      Ouvrir la carte
+                    </Button>
+                    <Button href={`/parcours/${parcours.slug}`} variant="outline">
+                      Détails du parcours
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -23,6 +23,8 @@ export function eventJsonLd() {
     "@type": "Event",
     name: SITE_NAME,
     startDate: "2026-09-20",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     description:
       "Rallye à vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc : deux parcours, des étapes patrimoniales et des extraits lus en chemin.",
     location: {

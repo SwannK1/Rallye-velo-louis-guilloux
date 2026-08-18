@@ -48,7 +48,7 @@ export default function UMapEmbed({
           href={umapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-sans font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
+          className="inline-block py-1 -my-1 text-xs font-sans font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
           style={{ color: "var(--accent)" }}
         >
           Ouvrir la carte en plein écran ↗

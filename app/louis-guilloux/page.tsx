@@ -1,7 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getChronologieHighlights } from "@/lib/data/chronologie";
+import { getImageById } from "@/lib/data/images";
+import RouteDivider from "@/components/RouteDivider";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
+
+function SectionPhoto({ imageId, caption }: { imageId: string; caption?: string }) {
+  const image = getImageById(imageId);
+  return (
+    <figure className="mb-5 max-w-xs">
+      <div
+        className="relative w-full overflow-hidden rounded-xl border"
+        style={{ borderColor: "var(--frame)", aspectRatio: "3 / 2" }}
+      >
+        <Image
+          src={`/images/lieux/${image.fileName}`}
+          alt={image.alt}
+          fill
+          sizes="320px"
+          className="object-cover"
+          loading="lazy"
+        />
+      </div>
+      <figcaption
+        className="mt-1.5 text-xs font-sans"
+        style={{ color: "var(--stone)" }}
+      >
+        {caption ?? image.title} — {image.credit}
+      </figcaption>
+    </figure>
+  );
+}
 
 const title = "Louis Guilloux";
 const description =
@@ -68,6 +98,10 @@ export default function LouisGuillouxPage() {
         >
           Le départ pour l&apos;Angleterre
         </h2>
+        <SectionPhoto
+          imageId="port-legue-contemporaine"
+          caption="Le port du Légué aujourd'hui, point de départ du jeune Guilloux en 1914"
+        />
         <p className="leading-relaxed" style={{ color: "var(--ink-light)" }}>
           À quatorze ans, en 1914, le jeune Louis Guilloux embarqua au port du
           Légué à bord du <em>Bégonia</em>, invité par son oncle Will en
@@ -91,6 +125,10 @@ export default function LouisGuillouxPage() {
         <h2 className="text-xl mb-4" style={{ color: "var(--ink)" }}>
           La rencontre avec Georges Palante
         </h2>
+        <SectionPhoto
+          imageId="villa-georges-palante-hillion"
+          caption="La villa de La Grandville, à Hillion, où vécut et mourut Georges Palante"
+        />
         <p className="leading-relaxed mb-4" style={{ color: "var(--ink-light)" }}>
           En 1916, le jeune Louis Guilloux fit la rencontre de Georges Palante
           (1862-1925), professeur de philosophie au Lycée Anatole Le Braz.
@@ -120,6 +158,10 @@ export default function LouisGuillouxPage() {
         <h2 className="text-xl mb-4" style={{ color: "var(--ink)" }}>
           L&apos;engagement auprès des réfugiés espagnols
         </h2>
+        <SectionPhoto
+          imageId="vallee-gouedic-contemporaine"
+          caption="La vallée du Gouédic aujourd'hui"
+        />
         <p className="leading-relaxed" style={{ color: "var(--ink-light)" }}>
           Fils de cordonnier, Louis Guilloux s&apos;engagea aux côtés de
           l&apos;abbé Vallée pour aider les réfugiés espagnols accueillis dans
@@ -216,6 +258,8 @@ export default function LouisGuillouxPage() {
           Voir les extraits lus, œuvre par œuvre →
         </Link>
       </section>
+
+      <RouteDivider className="mb-10" />
 
       {/* Repères chronologiques */}
       <section className="mb-10">

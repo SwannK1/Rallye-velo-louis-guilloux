@@ -6,6 +6,8 @@ import { getParcoursById } from "@/lib/data/parcours";
 import { getEtapesByRouteId } from "@/lib/data/etapes";
 import EtapeThumb from "@/components/EtapeThumb";
 import JsonLd from "@/components/JsonLd";
+import Pill from "@/components/Pill";
+import RouteDivider from "@/components/RouteDivider";
 import UMapEmbed from "@/components/UMapEmbed";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structuredData";
@@ -54,6 +56,12 @@ export default function ParcoursMatin() {
         {parcours.name}
       </h1>
 
+      {parcours.ambiance && (
+        <Pill tone="accent" uppercase>
+          {parcours.ambiance}
+        </Pill>
+      )}
+
       <dl
         className="mt-3 flex flex-wrap gap-x-6 gap-y-1 font-sans text-sm mb-8"
         style={{ color: "var(--stone)" }}
@@ -76,11 +84,12 @@ export default function ParcoursMatin() {
         </p>
       )}
 
-      {/* Image de couverture */}
+      {/* Image de couverture — cadrage plus resserré, registre architecture/patrimoine */}
       <figure className="mb-8">
+        <div aria-hidden="true" className="h-2 rounded-t-xl motif-matin" />
         <div
-          className="relative w-full overflow-hidden rounded-xl border"
-          style={{ borderColor: "var(--frame)", aspectRatio: "16 / 9" }}
+          className="relative w-full overflow-hidden rounded-b-xl border border-t-0"
+          style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
         >
           <Image
             src="/images/lieux/gare-saint-brieuc-contemporaine.jpg"
@@ -99,6 +108,8 @@ export default function ParcoursMatin() {
         className="mb-10"
       />
 
+      <RouteDivider className="mb-10" />
+
       {/* Étapes */}
       <section>
         <h2
@@ -109,8 +120,12 @@ export default function ParcoursMatin() {
         </h2>
         <ol className="relative flex flex-col gap-3">
           <div
-            className="absolute left-10 top-2 bottom-2 w-px hidden sm:block"
-            style={{ background: "var(--frame)" }}
+            className="absolute left-10 top-2 bottom-2 hidden sm:block"
+            style={{
+              width: "1px",
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--frame) 0 5px, transparent 5px 10px)",
+            }}
             aria-hidden="true"
           />
           {etapes.map((etape) => (
@@ -123,10 +138,11 @@ export default function ParcoursMatin() {
                 <EtapeThumb etape={etape} />
                 {etape.order !== undefined && (
                   <span
-                    className="w-6 h-6 flex-shrink-0 text-xs flex items-center justify-center rounded-full font-sans font-medium"
+                    className="w-6 h-6 flex-shrink-0 text-xs flex items-center justify-center rounded-full font-sans font-medium border"
                     style={{
-                      background: "var(--muted)",
-                      color: "var(--stone)",
+                      background: "var(--paper)",
+                      borderColor: "var(--accent)",
+                      color: "var(--accent)",
                     }}
                   >
                     {etape.order}

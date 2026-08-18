@@ -10,6 +10,14 @@
   --frame: #DDD5C8;
   --accent: #A45225;
   --accent-bg: #F0E8D8;
+
+  /* Accent secondaire « après-midi » (baie / horizon) — un seul ton
+     complémentaire, réservé aux petits éléments (traits, puces, pastilles)
+     du parcours de l'après-midi. Ce n'est pas une deuxième palette : le
+     fond, l'encre et le cadre restent partagés avec le reste du site.
+     Contraste vérifié ≥ 5.5:1 sur --paper et --muted. */
+  --accent-secondary: #3F6259;
+  --accent-secondary-bg: #E6EDE9;
 }
 
 @theme inline {
@@ -23,6 +31,8 @@
   --color-frame: var(--frame);
   --color-accent: var(--accent);
   --color-accent-bg: var(--accent-bg);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-secondary-bg: var(--accent-secondary-bg);
   --font-sans: var(--font-work-sans);
   --font-heading: var(--font-playfair);
   --font-body: var(--font-lora);
@@ -100,4 +110,29 @@ button:active {
   .card-link:hover {
     transform: translateY(-1px);
   }
+}
+
+/* ── Motifs matin / après-midi ────────────────────────────────────────
+   Purement décoratifs (toujours aria-hidden côté HTML) : ils ne portent
+   aucune information par eux-mêmes, seulement une ambiance. CSS pur,
+   pas d'image, pas de dépendance au mouvement. */
+
+/* Matin — trame fine évoquant un plan de ville / une règle d'archives. */
+.motif-matin {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--frame) 0,
+    var(--frame) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
+
+/* Après-midi — dégradé doux évoquant l'horizon de la baie. */
+.motif-apresmidi {
+  background-image: linear-gradient(
+    to bottom,
+    var(--accent-secondary-bg) 0%,
+    transparent 100%
+  );
 }

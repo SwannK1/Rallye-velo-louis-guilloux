@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getEtapeBySlug, etapesData } from "@/lib/data/etapes";
 import { parcoursData, getParcoursById } from "@/lib/data/parcours";
 import HeritageImageGallery from "@/components/HeritageImage";
+import Quote from "@/components/Quote";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structuredData";
@@ -58,6 +59,8 @@ export default async function EtapePage({
   const parcours = parcoursData.filter((p) =>
     etape.routeIds?.some((id) => p.id === id)
   );
+  const isApresMidi = parcours[0]?.id === "apres-midi";
+  const routeAccent = isApresMidi ? "var(--accent-secondary)" : "var(--accent)";
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
@@ -88,8 +91,8 @@ export default async function EtapePage({
                 href={`/parcours/${p.slug}`}
                 className="text-xs font-sans font-medium px-2.5 py-1 rounded-full border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
-                  borderColor: "var(--frame)",
-                  color: "var(--stone)",
+                  borderColor: p.id === "apres-midi" ? "var(--accent-secondary)" : "var(--accent)",
+                  color: p.id === "apres-midi" ? "var(--accent-secondary)" : "var(--accent)",
                 }}
               >
                 {p.name}
@@ -105,12 +108,26 @@ export default async function EtapePage({
             Étape {etape.order}
           </p>
         )}
-        <h1
-          className="text-3xl sm:text-4xl"
-          style={{ color: "var(--ink)" }}
-        >
-          {etape.title}
-        </h1>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <h1
+            className="text-3xl sm:text-4xl"
+            style={{ color: "var(--ink)" }}
+          >
+            {etape.title}
+          </h1>
+          {parcours[0] && (
+            <a
+              href={parcours[0].umapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block py-1 -my-1 text-sm font-sans font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
+              style={{ color: routeAccent }}
+            >
+              Localiser sur la carte ↗
+              <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>
+            </a>
+          )}
+        </div>
         {etape.theme && (
           <p
             className="mt-3 text-base italic leading-relaxed"
@@ -248,45 +265,32 @@ export default async function EtapePage({
                 ? "Extraits littéraires"
                 : "Extrait littéraire"}
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-10">
               {etape.literaryExtracts.map((extract, i) => (
                 <div key={i}>
-                  <div
-                    className="border-l-2 pl-5 py-1"
-                    style={{ borderColor: "var(--accent)" }}
-                  >
-                    {extract.sourceNote && (
-                      <p
-                        className="text-xs font-sans uppercase tracking-wider mb-3"
-                        style={{ color: "var(--stone)" }}
-                      >
-                        {extract.sourceNote}
-                      </p>
-                    )}
-                    <blockquote
-                      className="text-base leading-loose"
-                      style={{
-                        fontFamily:
-                          "var(--font-lora), Georgia, 'Times New Roman', serif",
-                        color: "var(--ink-light)",
-                        fontStyle: "italic",
-                        whiteSpace: "pre-wrap",
-                      }}
+                  {extract.sourceNote && (
+                    <p
+                      className="text-xs font-sans uppercase tracking-wider mb-2"
+                      style={{ color: "var(--stone)" }}
                     >
-                      {extract.text}
-                    </blockquote>
-                  </div>
-                  <cite
-                    className="not-italic text-sm font-sans mt-3 block"
-                    style={{ color: "var(--stone)" }}
+                      {extract.sourceNote}
+                    </p>
+                  )}
+                  <Quote
+                    author={extract.author}
+                    work={extract.work}
+                    reference={[
+                      extract.pages && `p. ${extract.pages}`,
+                      extract.edition,
+                    ]
+                      .filter(Boolean)
+                      .join(" — ")}
                   >
-                    {extract.author}, <em>{extract.work}</em>
-                    {extract.pages && `, p. ${extract.pages}`}
-                    {extract.edition && ` (${extract.edition})`}
-                  </cite>
+                    {extract.text}
+                  </Quote>
                   {!extract.verified && (
                     <p
-                      className="text-xs font-sans mt-1"
+                      className="text-xs font-sans mt-2"
                       style={{ color: "var(--accent)" }}
                     >
                       Référence en cours de vérification

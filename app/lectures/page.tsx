@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getOeuvresByAuthor } from "@/lib/data/oeuvres";
+import RouteDivider from "@/components/RouteDivider";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Lectures";
@@ -56,8 +57,9 @@ export default function LecturesPage() {
       </p>
 
       <div className="flex flex-col gap-12">
-        {groups.map(({ author, oeuvres }) => (
+        {groups.map(({ author, oeuvres }, index) => (
           <section key={author}>
+            {index > 0 && <RouteDivider className="mb-8" />}
             <h2
               className="text-2xl mb-1"
               style={{ color: "var(--ink)" }}

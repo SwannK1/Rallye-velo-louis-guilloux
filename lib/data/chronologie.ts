@@ -20,6 +20,8 @@ export type ChronologyEntry = {
   sourceDocument?: string;
   etapeSlug?: string;
   highlight?: boolean;
+  /** Référence optionnelle vers lib/data/images.ts — illustration ponctuelle, pas systématique. */
+  imageId?: string;
 };
 
 export const chronologieData: ChronologyEntry[] = [
@@ -72,6 +74,7 @@ export const chronologieData: ChronologyEntry[] = [
     sourceDocument: "palanteV6.docx",
     etapeSlug: "hillion",
     highlight: true,
+    imageId: "villa-georges-palante-hillion",
   },
   {
     id: "guilloux-lycee",
@@ -106,6 +109,7 @@ export const chronologieData: ChronologyEntry[] = [
       "Compte-rendu de la réunion de préparation du parcours, 10 août 2026 ; L'Herbe d'oubli, Gallimard 1984",
     etapeSlug: "port-du-legue",
     highlight: true,
+    imageId: "port-legue-ancienne",
   },
   {
     id: "guilloux-palante-rencontre",
@@ -129,6 +133,7 @@ export const chronologieData: ChronologyEntry[] = [
     sourceNote:
       "Compte-rendu de la réunion de préparation du parcours, 10 août 2026 ; Le Sang Noir, Gallimard 1935",
     etapeSlug: "gare-de-saint-brieuc",
+    highlight: true,
   },
   {
     id: "guilloux-palante-rupture",
