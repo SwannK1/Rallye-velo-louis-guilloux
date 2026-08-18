@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
+/* ── Palette éditoriale ───────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #F5F0E8;
+  --ink: #1C1810;
+  --ink-light: #5A4F42;
+  --stone: #73665A;
+  --muted: #EDE7DB;
+  --frame: #DDD5C8;
+  --accent: #A45225;
+  --accent-bg: #F0E8D8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-light: var(--ink-light);
+  --color-stone: var(--stone);
+  --color-muted: var(--muted);
+  --color-frame: var(--frame);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --font-sans: var(--font-work-sans);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-lora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Typographie globale ──────────────────────────────────────────── */
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-lora), Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-playfair), Georgia, serif;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* Le texte d'interface (nav, boutons, badges, légendes, métadonnées) utilise
+   la sans-serif éditoriale plutôt que le corps en Lora — elle porte la classe
+   utilitaire Tailwind `font-sans`, alimentée par --font-sans ci-dessus. */
+
+/* ── Extraits littéraires ─────────────────────────────────────────── */
+blockquote {
+  font-style: italic;
+  color: var(--ink-light);
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+/* ── Interactions discrètes ───────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  button {
+    transition:
+      opacity 150ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      transform 150ms ease;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+a:hover,
+button:hover {
+  opacity: 0.72;
+}
+
+a:active,
+button:active {
+  opacity: 0.55;
+}
+
+/* Cartes et lignes cliquables : un contour plus chaud au survol plutôt
+   qu'un simple assombrissement — l'opacité seule aplatit les grandes
+   surfaces bordées. */
+.card-link {
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.card-link:hover {
+  opacity: 1;
+  border-color: var(--accent) !important;
+  background: var(--accent-bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-link:hover {
+    transform: translateY(-1px);
+  }
 }
