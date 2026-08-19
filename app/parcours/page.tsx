@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { parcoursData } from "@/lib/data/parcours";
 import { getEtapesByRouteId } from "@/lib/data/etapes";
+import { getImageById } from "@/lib/data/images";
+import Pill from "@/components/Pill";
+import RouteDivider from "@/components/RouteDivider";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Parcours";
 const description =
-  "Deux parcours cyclistes proposés lors du Rallye Vélo Louis Guilloux du 20 septembre 2026 à Saint-Brieuc.";
+  "Deux parcours cyclistes proposés lors de la Randonnée vélo Louis Guilloux du 20 septembre 2026 à Saint-Brieuc.";
 
 export const metadata: Metadata = {
   title,
@@ -16,6 +20,39 @@ export const metadata: Metadata = {
     path: "/parcours",
   }),
 };
+
+const galleryLarge = {
+  ...getImageById("gare-saint-brieuc-contemporaine"),
+  etapeSlug: "gare-de-saint-brieuc",
+  tone: "accent" as const,
+  label: "Matin",
+};
+const gallerySmall = [
+  {
+    ...getImageById("vallee-gouedic-contemporaine"),
+    etapeSlug: "vallee-du-gouedic",
+    tone: "accent" as const,
+    label: "Matin",
+  },
+  {
+    ...getImageById("cimetiere-saint-michel-contemporaine"),
+    etapeSlug: "cimetiere-saint-michel",
+    tone: "accent" as const,
+    label: "Matin",
+  },
+  {
+    ...getImageById("port-legue-contemporaine"),
+    etapeSlug: "port-du-legue",
+    tone: "accent" as const,
+    label: "Matin",
+  },
+  {
+    ...getImageById("hillion-eglise-contemporaine"),
+    etapeSlug: "hillion",
+    tone: "accent-secondary" as const,
+    label: "Après-midi",
+  },
+];
 
 export default function ParcoursPage() {
   return (
@@ -114,6 +151,111 @@ export default function ParcoursPage() {
           );
         })}
       </div>
+
+      <p className="text-sm font-sans mt-6" style={{ color: "var(--stone)" }}>
+        Ce tracé a été conçu par{" "}
+        <a
+          href="https://velo-utile.fr/site/2026/07/rallye-velo-louis-guilloux/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
+          style={{ color: "var(--accent)" }}
+        >
+          Vélo Utile
+          <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>
+        </a>
+        , en collaboration avec la Société des Amis de Louis Guilloux.
+      </p>
+
+      <RouteDivider className="my-12" />
+
+      {/* ── Le parcours en images ────────────────────────────────────────── */}
+      <section>
+        <h2
+          className="text-2xl sm:text-3xl mb-8"
+          style={{ color: "var(--ink)" }}
+        >
+          Le parcours en images
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 sm:grid-rows-2 gap-3 sm:gap-4">
+          <Link
+            href={`/etapes/${galleryLarge.etapeSlug}`}
+            className="card-link group col-span-2 sm:row-span-2 rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            <figure>
+              <div
+                className="relative w-full overflow-hidden rounded-xl border"
+                style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
+              >
+                <Image
+                  src={`/images/lieux/${galleryLarge.fileName}`}
+                  alt={galleryLarge.alt}
+                  fill
+                  sizes="(min-width: 640px) 45vw, 100vw"
+                  className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption
+                className="mt-2 text-sm font-sans"
+                style={{ color: "var(--ink-light)" }}
+              >
+                <div className="mb-1">
+                  <Pill tone={galleryLarge.tone} uppercase>
+                    {galleryLarge.label}
+                  </Pill>
+                </div>
+                {galleryLarge.place}
+                <span
+                  className="block text-xs mt-0.5"
+                  style={{ color: "var(--stone)" }}
+                >
+                  Voir l&apos;étape →
+                </span>
+              </figcaption>
+            </figure>
+          </Link>
+          {gallerySmall.map((image) => (
+            <Link
+              key={image.id}
+              href={`/etapes/${image.etapeSlug}`}
+              className="card-link group rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <figure>
+                <div
+                  className="relative w-full overflow-hidden rounded-xl border"
+                  style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
+                >
+                  <Image
+                    src={`/images/lieux/${image.fileName}`}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 640px) 22vw, 50vw"
+                    className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption
+                  className="mt-2 text-xs sm:text-sm font-sans"
+                  style={{ color: "var(--ink-light)" }}
+                >
+                  <div className="mb-1">
+                    <Pill tone={image.tone} uppercase>
+                      {image.label}
+                    </Pill>
+                  </div>
+                  {image.place}
+                </figcaption>
+              </figure>
+            </Link>
+          ))}
+        </div>
+        <p className="mt-4 text-xs font-sans" style={{ color: "var(--stone)" }}>
+          {[galleryLarge, ...gallerySmall].map((img) => img.credit).filter(
+            (v, i, a) => a.indexOf(v) === i,
+          ).join(" · ")}
+        </p>
+      </section>
     </div>
   );
 }

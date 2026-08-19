@@ -643,7 +643,7 @@ En un mot, le but de l'éducation est de prévenir l'originalité et de réduire
       depuisPrecedente:
         "Après l'itinéraire biographique jusqu'à Hillion, place à la pensée même de Georges Palante, telle que Guilloux en fut marqué toute sa vie.",
       versSuivante:
-        "Le rallye s'achève à la maison de Louis Guilloux.",
+        "La randonnée s'achève à la maison de Louis Guilloux.",
     },
     etapesLiees: ["hillion", "secteur-anatole-le-braz"],
   },
@@ -652,11 +652,11 @@ En un mot, le but de l'éducation est de prévenir l'originalité et de réduire
     id: "maison-louis-guilloux",
     slug: "maison-louis-guilloux",
     title: "Maison Louis Guilloux",
-    theme: "Point d'arrivée du rallye",
+    theme: "Point d'arrivée de la randonnée",
     routeIds: ["apres-midi"],
     order: 4,
     introduction: {
-      text: "La maison de Louis Guilloux, au 13 rue Lavoisier à Saint-Brieuc, est le point d'arrivée du rallye. C'est ici que Guilloux vécut avec Renée, que leur fille Yvonne naquit en 1932, et que la maison servit, pendant l'Occupation, de lieu de rencontre entre divers réseaux de résistants. La réunion de préparation du 10 août 2026 s'est tenue dans cette maison.",
+      text: "La maison de Louis Guilloux, au 13 rue Lavoisier à Saint-Brieuc, est le point d'arrivée de la randonnée. C'est ici que Guilloux vécut avec Renée, que leur fille Yvonne naquit en 1932, et que la maison servit, pendant l'Occupation, de lieu de rencontre entre divers réseaux de résistants. La réunion de préparation du 10 août 2026 s'est tenue dans cette maison.",
       verified: true,
       sourceNote:
         "Compte-rendu de la réunion de préparation du parcours, 10 août 2026 ; Frédérick Laurent, discours d'inauguration de la bibliothèque Renée Guilloux d'Étables, 2019",

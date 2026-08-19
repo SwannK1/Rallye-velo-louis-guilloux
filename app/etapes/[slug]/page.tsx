@@ -25,8 +25,8 @@ export async function generateMetadata({
   const description = [
     etape.theme,
     parcours && etape.order !== undefined
-      ? `Étape ${etape.order} du ${parcours.name.toLowerCase()} du Rallye Vélo Louis Guilloux, le 20 septembre 2026.`
-      : "Étape du Rallye Vélo Louis Guilloux, le 20 septembre 2026 à Saint-Brieuc.",
+      ? `Étape ${etape.order} du ${parcours.name.toLowerCase()} de la Randonnée vélo Louis Guilloux, le 20 septembre 2026.`
+      : "Étape de la Randonnée vélo Louis Guilloux, le 20 septembre 2026 à Saint-Brieuc.",
   ]
     .filter(Boolean)
     .join(". ");

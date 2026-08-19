@@ -12,7 +12,7 @@ export function websiteJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "Rallye vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc, le 20 septembre 2026.",
+      "Randonnée vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc, le 20 septembre 2026.",
     inLanguage: "fr-FR",
   };
 }
@@ -26,7 +26,7 @@ export function eventJsonLd() {
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     description:
-      "Rallye à vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc : deux parcours, des étapes patrimoniales et des extraits lus en chemin.",
+      "Randonnée à vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc : deux parcours, des étapes patrimoniales et des extraits lus en chemin.",
     location: {
       "@type": "Place",
       name: "Saint-Brieuc",

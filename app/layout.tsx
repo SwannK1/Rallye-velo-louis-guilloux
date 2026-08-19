@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Rallye vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc, le 20 septembre 2026.",
+    "Randonnée vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc, le 20 septembre 2026.",
   robots: {
     index: true,
     follow: true,

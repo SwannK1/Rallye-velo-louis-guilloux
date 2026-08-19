@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_URL = "https://randonnee-velo-louis-guilloux.vercel.app";
-export const SITE_NAME = "Rallye Vélo Louis Guilloux";
+export const SITE_NAME = "Randonnée vélo Louis Guilloux";
 
 type SeoImage = { url: string; alt: string };
 

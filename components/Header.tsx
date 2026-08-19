@@ -44,7 +44,7 @@ export default function Header() {
               color: "var(--ink)",
             }}
           >
-            Rallye Vélo Louis Guilloux
+            Randonnée vélo Louis Guilloux
           </Link>
 
           {/* Navigation desktop */}

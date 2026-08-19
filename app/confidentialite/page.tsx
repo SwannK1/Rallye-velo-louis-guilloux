@@ -3,7 +3,7 @@ import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Confidentialité";
 const description =
-  "Ce que le site du Rallye Vélo Louis Guilloux collecte — et ne collecte pas — sur ses visiteurs.";
+  "Ce que le site de la Randonnée vélo Louis Guilloux collecte — et ne collecte pas — sur ses visiteurs.";
 
 export const metadata: Metadata = {
   title,
@@ -90,7 +90,7 @@ export default function ConfidentialitePage() {
           <p className="leading-relaxed" style={{ color: "var(--ink-light)" }}>
             Les cartes des parcours ouvrent uMap dans un nouvel onglet ; ce
             site externe applique sa propre politique de confidentialité,
-            indépendante de celle du Rallye Vélo Louis Guilloux.
+            indépendante de celle de la Randonnée vélo Louis Guilloux.
           </p>
         </section>
       </div>

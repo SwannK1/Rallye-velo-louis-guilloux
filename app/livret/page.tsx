@@ -4,7 +4,7 @@ import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Livret";
 const description =
-  "Le livret du participant du Rallye Vélo Louis Guilloux, 20 septembre 2026 à Saint-Brieuc.";
+  "Le livret du participant de la Randonnée vélo Louis Guilloux, 20 septembre 2026 à Saint-Brieuc.";
 
 export const metadata: Metadata = {
   title,
@@ -28,7 +28,7 @@ export default function LivretPage() {
         className="text-lg leading-relaxed mb-6"
         style={{ color: "var(--ink-light)" }}
       >
-        Le livret accompagne le rallye étape par étape, avec les extraits
+        Le livret accompagne la randonnée étape par étape, avec les extraits
         littéraires et les informations pratiques de chaque lieu.
       </p>
       <p

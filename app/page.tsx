@@ -15,22 +15,14 @@ import { eventJsonLd } from "@/lib/structuredData";
 
 const heroImage = getImageById("tour-cesson-contemporaine");
 
-const galleryLarge = { ...getImageById("gare-saint-brieuc-contemporaine"), etapeSlug: "gare-de-saint-brieuc" };
-const gallerySmall = [
-  { ...getImageById("vallee-gouedic-contemporaine"), etapeSlug: "vallee-du-gouedic" },
-  { ...getImageById("cimetiere-saint-michel-contemporaine"), etapeSlug: "cimetiere-saint-michel" },
-  { ...getImageById("port-legue-contemporaine"), etapeSlug: "port-du-legue" },
-  { ...getImageById("hillion-eglise-contemporaine"), etapeSlug: "hillion" },
-];
-
-const homeTitle = "Rallye Vélo Louis Guilloux — Saint-Brieuc, 20 septembre 2026";
+const homeTitle = "Randonnée vélo Louis Guilloux — Saint-Brieuc, 20 septembre 2026";
 
 export const metadata: Metadata = {
   title: { absolute: homeTitle },
   ...pageMetadata({
     ogTitle: homeTitle,
     description:
-      "Rallye à vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc : deux parcours, des étapes patrimoniales et des extraits lus en chemin, le 20 septembre 2026.",
+      "Randonnée à vélo littéraire sur les traces de Louis Guilloux à Saint-Brieuc : deux parcours, des étapes patrimoniales et des extraits lus en chemin, le 20 septembre 2026.",
     path: "/",
     image: { url: `/images/lieux/${heroImage.fileName}`, alt: heroImage.alt },
   }),
@@ -60,7 +52,7 @@ export default function HomePage() {
               className="text-4xl sm:text-5xl lg:text-6xl leading-tight"
               style={{ color: "var(--ink)" }}
             >
-              Rallye Vélo
+              Randonnée vélo
               <br />
               Louis Guilloux
             </h1>
@@ -154,86 +146,6 @@ export default function HomePage() {
             Et le mouvement, les cris, les appels de gens qui avaient le
             bonheur de partir, tous de grands aventuriers !
           </Quote>
-        </div>
-      </section>
-
-      {/* ── Le parcours en images ────────────────────────────────────────── */}
-      <section className="pb-12 sm:pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <h2
-            className="text-2xl sm:text-3xl mb-8"
-            style={{ color: "var(--ink)" }}
-          >
-            Le parcours en images
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 sm:grid-rows-2 gap-3 sm:gap-4">
-            <Link
-              href={`/etapes/${galleryLarge.etapeSlug}`}
-              className="card-link group col-span-2 sm:row-span-2 rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              <figure>
-                <div
-                  className="relative w-full overflow-hidden rounded-xl border"
-                  style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
-                >
-                  <Image
-                    src={`/images/lieux/${galleryLarge.fileName}`}
-                    alt={galleryLarge.alt}
-                    fill
-                    sizes="(min-width: 640px) 45vw, 100vw"
-                    className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
-                <figcaption
-                  className="mt-2 text-sm font-sans"
-                  style={{ color: "var(--ink-light)" }}
-                >
-                  {galleryLarge.place}
-                  <span
-                    className="block text-xs mt-0.5"
-                    style={{ color: "var(--stone)" }}
-                  >
-                    Voir l&apos;étape →
-                  </span>
-                </figcaption>
-              </figure>
-            </Link>
-            {gallerySmall.map((image) => (
-              <Link
-                key={image.id}
-                href={`/etapes/${image.etapeSlug}`}
-                className="card-link group rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-              >
-                <figure>
-                  <div
-                    className="relative w-full overflow-hidden rounded-xl border"
-                    style={{ borderColor: "var(--frame)", aspectRatio: "4 / 3" }}
-                  >
-                    <Image
-                      src={`/images/lieux/${image.fileName}`}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 640px) 22vw, 50vw"
-                      className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  </div>
-                  <figcaption
-                    className="mt-2 text-xs sm:text-sm font-sans"
-                    style={{ color: "var(--ink-light)" }}
-                  >
-                    {image.place}
-                  </figcaption>
-                </figure>
-              </Link>
-            ))}
-          </div>
-          <p className="mt-4 text-xs font-sans" style={{ color: "var(--stone)" }}>
-            {[galleryLarge, ...gallerySmall].map((img) => img.credit).filter(
-              (v, i, a) => a.indexOf(v) === i,
-            ).join(" · ")}
-          </p>
         </div>
       </section>
 
@@ -462,7 +374,7 @@ export default function HomePage() {
                 className="text-sm leading-relaxed mb-4 font-sans"
                 style={{ color: "var(--ink-light)" }}
               >
-                Le livret accompagne le rallye étape par étape, avec extraits
+                Le livret accompagne la randonnée étape par étape, avec extraits
                 littéraires et informations pratiques.
               </p>
               <Link

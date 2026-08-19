@@ -7,7 +7,7 @@ import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Étapes";
 const description =
-  "Les étapes du Rallye Vélo Louis Guilloux, réparties entre le parcours du matin et celui de l'après-midi.";
+  "Les étapes de la Randonnée vélo Louis Guilloux, réparties entre le parcours du matin et celui de l'après-midi.";
 
 export const metadata: Metadata = {
   title,

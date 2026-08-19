@@ -6,7 +6,7 @@ import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Lectures";
 const description =
-  "Les œuvres et auteurs mobilisés pendant le Rallye Vélo Louis Guilloux, et les étapes où ils sont lus.";
+  "Les œuvres et auteurs mobilisés pendant la Randonnée vélo Louis Guilloux, et les étapes où ils sont lus.";
 
 export const metadata: Metadata = {
   title,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const authorNote: Record<string, string> = {
   "Louis Guilloux":
-    "Écrivain briochin, dont les romans et textes autobiographiques irriguent la majorité des étapes du rallye.",
+    "Écrivain briochin, dont les romans et textes autobiographiques irriguent la majorité des étapes de la randonnée.",
   "Georges Palante":
     "Philosophe individualiste, professeur au lycée Anatole Le Braz et ami de jeunesse de Louis Guilloux.",
   "Mona Ozouf":
@@ -43,7 +43,7 @@ export default function LecturesPage() {
         className="text-lg leading-relaxed mb-10"
         style={{ color: "var(--ink-light)" }}
       >
-        Les œuvres et auteurs mobilisés pendant le rallye, et les étapes où
+        Les œuvres et auteurs mobilisés pendant la randonnée, et les étapes où
         ils sont lus. Pour l&apos;itinéraire inverse — d&apos;un lieu vers ses
         textes — voir la page{" "}
         <Link
@@ -128,7 +128,7 @@ export default function LecturesPage() {
 
                     <ul className="flex flex-wrap gap-2">
                       {allEtapes.map((ref) => (
-                        <li key={ref.etapeSlug}>
+                        <li key={`${ref.etapeSlug}::${ref.pages ?? ""}`}>
                           <Link
                             href={`/etapes/${ref.etapeSlug}`}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-sans transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"

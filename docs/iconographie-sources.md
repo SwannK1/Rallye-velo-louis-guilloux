@@ -275,6 +275,34 @@ Paris 6e — c'est une adresse parisienne, sans rapport avec Saint-Brieuc.
 
 ---
 
+## 13. Portraits — vérification pour /louis-guilloux et /lectures (19 août 2026)
+
+Vérification complémentaire pour les cinq figures évoquées sur `/louis-guilloux` et
+`/lectures` : Louis Guilloux, Georges Palante, Albert Camus, Renée Guilloux, Mona Ozouf.
+Aucun portrait n'a été intégré au site à l'issue de cette vérification.
+
+- **Louis Guilloux** et **Georges Palante** : déjà vérifiés (sections 11 et 12 ci-dessus) —
+  portraits trouvés mais écartés pour résolution insuffisante (et provenance, pour Palante).
+- **Albert Camus** : un portrait circule sur Commons
+  (https://commons.wikimedia.org/wiki/File:Albert_Camus_by_Ervin_Marton.jpg, CC BY-SA 4.0
+  déclarée par l'uploader). *Écarté* : il s'agit d'une photographie prise au téléphone, en 2024,
+  d'une photo de couverture de livre de 1964 elle-même signée du photographe Ervin Marton (droits
+  d'auteur du photographe, non de l'uploader) — chaîne de droits non établie, la licence CC
+  apposée par l'uploader sur une reproduction d'une œuvre tierce protégée est contestable.
+- **Renée Guilloux** : aucune photographie trouvée sur Wikimedia Commons (recherche vide).
+- **Mona Ozouf** : trois fichiers identifiés sur Commons, tous *écartés* :
+  - `Mona_Ozouf_2014.jpg` (CC BY-SA 4.0, Julien Morvan, festival Étonnants Voyageurs,
+    7 juin 2014) — licence propre et résolution correcte (1551×1974), mais cliché candide (de
+    profil, lunettes de soleil masquant le regard, arrière-plan encombré) qui ne correspond pas
+    au registre éditorial sobre du site. Piste à reconsidérer si un portrait plus formel de Mona
+    Ozouf, sous licence libre, est retrouvé.
+  - `Mona_Ozouf.jpg` (CC BY 3.0, librairie mollat, 2025) — capture d'écran d'une vidéo YouTube,
+    qualité insuffisante pour un usage éditorial.
+  - `Mona_Ozouf_(2014).jpg` — **rejeté d'office** : image explicitement suréchantillonnée par IA
+    (Remini.ai Photo Enhancer selon sa propre page Commons), donc susceptible de contenir des
+    détails inventés par l'algorithme. Incompatible avec l'exigence du site de ne jamais fabriquer
+    de contenu.
+
 ## Récapitulatif des lacunes signalées
 
 | Lieu / sujet | Statut |
@@ -286,6 +314,9 @@ Paris 6e — c'est une adresse parisienne, sans rapport avec Saint-Brieuc.
 | Tombe de Lucien Camus (cimetière Saint-Michel) | Aucune image trouvée |
 | Camp de prisonniers/réfugiés, vallée du Gouédic | Aucune image d'époque du camp lui-même trouvée ; seules des vues générales de la vallée sont utilisées |
 | Plage du Valais / grève de Cesson | Correspondance géographique exacte non confirmée avec certitude |
+| Portrait d'Albert Camus | Trouvé mais écarté (chaîne de droits non établie) |
+| Portrait de Renée Guilloux | Aucune image trouvée |
+| Portrait de Mona Ozouf | Trois pistes trouvées, toutes écartées (qualité éditoriale ou image suréchantillonnée par IA) |
 
 ## Méthode de vérification
 

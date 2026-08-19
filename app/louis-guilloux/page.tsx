@@ -312,7 +312,7 @@ export default function LouisGuillouxPage() {
       {/* Lien vers les étapes */}
       <div className="border-t pt-8" style={{ borderColor: "var(--frame)" }}>
         <p className="text-sm font-sans mb-4" style={{ color: "var(--stone)" }}>
-          Les lieux évoqués dans son œuvre jalonnent le parcours du rallye.
+          Les lieux évoqués dans son œuvre jalonnent le parcours de la randonnée.
         </p>
         <Link
           href="/etapes"

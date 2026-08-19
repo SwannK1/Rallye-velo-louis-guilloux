@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { partenairesData, creditsData } from "@/lib/data/partenaires";
 import { pageMetadata, SITE_NAME } from "@/lib/seo";
 
 const title = "Partenaires";
 const description =
-  "Les partenaires et sources du Rallye Vélo Louis Guilloux, 20 septembre 2026 à Saint-Brieuc.";
+  "Les partenaires et sources de la Randonnée vélo Louis Guilloux, 20 septembre 2026 à Saint-Brieuc.";
 
 export const metadata: Metadata = {
   title,
@@ -68,7 +69,7 @@ export default function PartenairesPage() {
         className="text-lg leading-relaxed mb-12"
         style={{ color: "var(--ink-light)" }}
       >
-        Le Rallye Vélo Louis Guilloux se construit avec le soutien
+        La Randonnée vélo Louis Guilloux se construit avec le soutien
         d&apos;associations et de sources documentaires qui rendent le
         parcours possible.
       </p>
@@ -90,35 +91,61 @@ export default function PartenairesPage() {
           {partenairesData.map((partenaire) => (
             <div
               key={partenaire.id}
-              className="border rounded-xl p-5"
+              className="border rounded-xl p-5 sm:p-6"
               style={{ borderColor: "var(--frame)" }}
             >
-              <p
-                className="font-sans font-medium mb-1"
-                style={{ color: "var(--ink)" }}
-              >
-                {partenaire.name}
-              </p>
-              <p
-                className="text-sm leading-relaxed mb-3"
-                style={{ color: "var(--ink-light)" }}
-              >
-                {partenaire.role}
-              </p>
-              {partenaire.url && (
-                <a
-                  href={partenaire.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block py-1 -my-1 text-sm font-sans font-medium underline transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
-                  style={{ color: "var(--accent)" }}
-                >
-                  Site officiel
-                  <span className="sr-only">
-                    {" "}(s&apos;ouvre dans un nouvel onglet)
-                  </span>
-                </a>
-              )}
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                {partenaire.logo && (
+                  <div
+                    className="flex-shrink-0 w-20 h-20 flex items-center justify-center rounded-lg border"
+                    style={{ borderColor: "var(--frame)", background: "var(--paper)" }}
+                  >
+                    <Image
+                      src={`/images/partenaires/${partenaire.logo.fileName}`}
+                      alt=""
+                      width={partenaire.logo.width}
+                      height={partenaire.logo.height}
+                      className="max-w-[4.5rem] max-h-[4.5rem] w-auto h-auto object-contain"
+                    />
+                  </div>
+                )}
+                <div className="flex-1">
+                  <p
+                    className="font-sans font-medium mb-1"
+                    style={{ color: "var(--ink)" }}
+                  >
+                    {partenaire.name}
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed mb-3"
+                    style={{ color: "var(--ink-light)" }}
+                  >
+                    {partenaire.role}
+                  </p>
+                  {partenaire.url && (
+                    <a
+                      href={partenaire.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block py-1 -my-1 text-sm font-sans font-medium underline transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      Site officiel
+                      <span className="sr-only">
+                        {" "}(s&apos;ouvre dans un nouvel onglet)
+                      </span>
+                    </a>
+                  )}
+                  {partenaire.logo && (
+                    <p
+                      className="mt-3 text-xs font-sans leading-snug"
+                      style={{ color: "var(--stone)" }}
+                    >
+                      {partenaire.logo.credit}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -144,7 +171,7 @@ export default function PartenairesPage() {
             <IconArchive />
           </span>
           <h2 className="text-lg sm:text-xl" style={{ color: "var(--ink)" }}>
-            Crédits
+            Sources et ressources documentaires
           </h2>
         </div>
 
